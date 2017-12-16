@@ -1,18 +1,21 @@
 export default {
-  alert: {
-    message: {
-      content: '',
-      type: ''
+    alert: {
+        message: {
+            content: '',
+            type: ''
+        },
+        show: false
     },
-    show: false
-  },
-  modal: {
-    id: '',
-    show: false
-  },
-  savingUser: false,
-  userToDelete: '',
-  users: [],
-  user: {},
+    modal: {
+        id: '',
+        show: false
+    },
+    savingUser: false,
+    userToDelete: '',
+    users: [],
+    user: {},
+    orders: [],
+    order: {},
+    savingOrder: false,
+    orderToDelete: ''
 };
-

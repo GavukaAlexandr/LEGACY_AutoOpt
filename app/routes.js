@@ -1,3 +1,6 @@
+import OrderEditPage from "./components/order/OrderEditPage";
+import OrderAddPage from "./components/order/OrderAddPage";
+import OrderPage from "./components/order/OrderPage";
 import React from "react";
 import {
     Route,
@@ -15,6 +18,9 @@ export default (
     <Route path="/app" component={App}>
       <Redirect from="/" to="/app"/>
       <IndexRoute component={HomePage}/>
+      <Route path="/app/orders" component={OrderPage}/>
+      <Route path="/app/orders/add" component={OrderAddPage}/>
+      <Route path="/app/orders/:id/edit" component={OrderEditPage}/>
       <Route path="/app/users" component={UsersPageComponent}/>
       <Route path="/app/users/add" component={UserAddPage}/>
       <Route path="/app/users/:id/edit" component={UserEditPage}/>

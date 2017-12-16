@@ -1,21 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import Header from './common/Header';
-import Footer from './common/Footer';
+//import Footer from './common/Footer';
 
 // This component handles the App template used on every page.
 class App extends React.Component {
   render(){
     return (
-      <div>
-        <Header/>
+      <MuiThemeProvider>    
+      {/* <div> */}
+        {/* <Header/> */}
         <div className="container-fluid">
           {this.props.children}
         </div>
-        <hr />
-        <Footer/>
-      </div>
+        {/* <hr /> */}
+        {/* <Footer/> */}
+      {/* </div> */}
+      </ MuiThemeProvider>
     );
   }
 }

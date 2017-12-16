@@ -6,7 +6,7 @@ import config from '../webpack.config';
 import open from 'open';
 import mongodbConnection from './database/mongodb';
 import apiConfig from 'config';
-import addApiRoutes from './addApiRoutes'
+import addApiRoutes from './addApiRoutes';
 
 /* eslint-disable no-console */
 

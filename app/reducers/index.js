@@ -1,8 +1,14 @@
 import {
-  users,
-  user,
-  savingUser,
-  userToDelete
+    orders,
+    order,
+    savingOrder,
+    orderToDelete
+} from './orderReducer';
+import {
+    users,
+    user,
+    savingUser,
+    userToDelete
 } from './userReducer';
 import { combineReducers } from 'redux';
 import { modal } from './modalReducer';
@@ -13,6 +19,10 @@ const rootReducer = combineReducers({
     users,
     user,
     savingUser,
-    userToDelete
+    userToDelete,
+    orders,
+    order,
+    savingOrder,
+    orderToDelete
 });
 export default rootReducer;

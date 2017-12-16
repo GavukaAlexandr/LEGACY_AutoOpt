@@ -1,6 +1,11 @@
-export const BASE_URL = API_BASE_URL; // eslint-disable-line no-undef
+export const BASE_URL = API_BASE_URL;
 export const GET_USERS = '/users';
 export const GET_USER = '/users';
 export const POST_USER = '/users';
 export const PUT_USER = '/users';
 export const DELETE_USER = '/users';
+export const GET_ORDERS = '/orders';
+export const GET_ORDER = '/orders';
+export const POST_ORDER = '/orders';
+export const PUT_ORDER = '/orders';
+export const DELETE_ORDER = '/orders';
