@@ -2,92 +2,88 @@ import React, { Component } from "react";
 import { PropTypes } from "prop-types";
 import Order from "./Order";
 
-import ReactTable from 'react-table';
-import 'react-table/react-table.css';
-
-
+import ReactTable from "react-table";
+import "react-table/react-table.css";
 
 class OrderList extends React.Component {
-  constructor() {
-    super();
+  constructor(props, context) {
+    super(props, context);
     this.state = {
-      data: this.orders
-
+      data: this.props
     };
   }
   render() {
     const { data } = this.state;
-    console.log(data);
     return (
       <div>
         <ReactTable
           data={data}
           columns={[
-                {
-                  Header: "Имя",
-                  accessor: "userName"
-                },
-                {
-                  Header: "Email",
-                  accessor: 'email'
-                },
-                {
-                  Header: "Телефон",
-                  accessor: "phone"
-                },
-                {
-                  Header: "Уведомления",
-                  accessor: "response"
-                },
-            
-                {
-                  Header: "Тип",
-                  accessor: "transportType"
-                },
-                {
-                  Header: "Марка",
-                  accessor: "brand"
-                },
-                {
-                  Header: "Модель",
-                  accessor: "model"
-                },
-                {
-                  Header: "Год выпуска",
-                  accessor: "releaseYear"
-                },
-                {
-                  Header: "Объем двигателя",
-                  accessor: "engineCapacity"
-                },
-                {
-                  Header: "Тип кузова",
-                  accessor: "bodyType"
-                },
-                {
-                  Header: "Привод",
-                  accessor: "carDrive"
-                },
-                {
-                  Header: "Трансмиссия",
-                  accessor: "transmission"
-                },
-                {
-                  Header: "Топливо",
-                  accessor: "fuel"
-                },
-                {
-                  Header: "VIN",
-                  accessor: "vinNumber"
-                },
-                {
-                  Header: "Запчасть",
-                  accessor: "autoParts.name"
-                },
-                {
-                  Header: "Состояние",
-                  accessor: "..."
-                },
+            {
+              Header: "Имя",
+              accessor: "userName"
+            },
+            {
+              Header: "Email",
+              accessor: "email"
+            },
+            {
+              Header: "Телефон",
+              accessor: "phone"
+            },
+            {
+              Header: "Уведомления",
+              accessor: "response"
+            },
+
+            {
+              Header: "Тип",
+              accessor: "transportType"
+            },
+            {
+              Header: "Марка",
+              accessor: "brand"
+            },
+            {
+              Header: "Модель",
+              accessor: "model"
+            },
+            {
+              Header: "Год выпуска",
+              accessor: "releaseYear"
+            },
+            {
+              Header: "Объем двигателя",
+              accessor: "engineCapacity"
+            },
+            {
+              Header: "Тип кузова",
+              accessor: "bodyType"
+            },
+            {
+              Header: "Привод",
+              accessor: "carDrive"
+            },
+            {
+              Header: "Трансмиссия",
+              accessor: "transmission"
+            },
+            {
+              Header: "Топливо",
+              accessor: "fuel"
+            },
+            {
+              Header: "VIN",
+              accessor: "vinNumber"
+            },
+            {
+              Header: "Запчасть",
+              accessor: "autoParts.name"
+            },
+            {
+              Header: "Состояние",
+              accessor: "..."
+            }
           ]}
           defaultPageSize={10}
           className="-striped -highlight"
@@ -96,10 +92,6 @@ class OrderList extends React.Component {
     );
   }
 }
-
-
-
-
 
 // const OrderList = ({ orders, onClickDetail, onClickDelete }) => {
 //   let ordersView = (
@@ -122,7 +114,7 @@ class OrderList extends React.Component {
 OrderList.propTypes = {
   orders: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      // id: PropTypes.string.isRequired,
       // name: PropTypes.string.isRequired
     }).isRequired
   ).isRequired,
