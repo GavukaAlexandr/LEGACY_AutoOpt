@@ -13,8 +13,8 @@ class App extends React.Component {
     return (
       <MuiThemeProvider>    
       {/* <div> */}
-        {/* <Header/> */}
-        <div className="container-fluid">
+        <Header/>
+        <div className="">
           {this.props.children}
         </div>
         {/* <hr /> */}

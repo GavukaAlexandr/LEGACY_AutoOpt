@@ -1,115 +1,180 @@
 import React, { Component } from "react";
-import { PropTypes } from "prop-types";
+import { PropTypes, element } from "prop-types";
 import Order from "./Order";
 
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+import { orders } from "../../reducers/orderReducer";
 
 class OrderList extends React.Component {
   constructor(props, context) {
+    console.log("asdasdas")
     super(props, context);
-    this.state = {
-      data: this.props
-    };
+    this.state = {};
+    // const { orders, onClickDetail, onClickDelete } = this.props;
   }
-  render() {
-    const { data } = this.state;
+    render() {
+    // console.log(this.props)
+    const { orders, onClickDetail, onClickDelete } = this.props;
     return (
       <div>
         <ReactTable
-          data={data}
+        className='order-list-table'
+          data={orders}
           columns={[
             {
-              Header: "Имя",
-              accessor: "userName"
-            },
-            {
-              Header: "Email",
-              accessor: "email"
-            },
-            {
-              Header: "Телефон",
-              accessor: "phone"
+              Header: "Пользователь",
+              columns: [
+                {
+                  Header: "Имя",
+                  accessor: "user.name"
+                },
+                {
+                  Header: "Email",
+                  accessor: "user.email"
+                },
+                {
+                  Header: "Телефон",
+                  accessor: "user.phone"
+                }
+              ]
             },
             {
               Header: "Уведомления",
-              accessor: "response"
+              columns: [
+                {
+                  Header: "Viber",
+                  id: 'getResponse.viber',       
+                  accessor: d => d.getResponse.viber ? "Да" : "Нет"
+                },
+                {
+                  Header: "Звонок",
+                  id: 'getResponse.call',
+                  accessor: d => d.getResponse.call ? "Да" : "Нет"
+                },
+                {
+                  Header: "email",
+                  id: "getResponse.email",
+                  accessor: d => d.getResponse.email ? "Да" : "Нет"
+                },
+                {
+                  Header: "whatsapp",
+                  id: "whatsapp",
+                  accessor: d => d.getResponse.whatsapp ? "Да" : "Нет"
+                }
+              ]
             },
 
             {
-              Header: "Тип",
-              accessor: "transportType"
+              Header: "Тип кузова",
+              accessor: "carParameters.transportType"
             },
             {
               Header: "Марка",
-              accessor: "brand"
+              accessor: "carParameters.brand"
             },
             {
               Header: "Модель",
-              accessor: "model"
+              accessor: "carParameters.model"
             },
             {
               Header: "Год выпуска",
-              accessor: "releaseYear"
+              accessor: "carParameters.releaseYear"
             },
             {
               Header: "Объем двигателя",
-              accessor: "engineCapacity"
+              accessor: "carParameters.engineCapacity"
             },
             {
               Header: "Тип кузова",
-              accessor: "bodyType"
+              accessor: "carParameters.bodyType"
             },
             {
               Header: "Привод",
-              accessor: "carDrive"
-            },
-            {
-              Header: "Трансмиссия",
-              accessor: "transmission"
-            },
-            {
-              Header: "Топливо",
-              accessor: "fuel"
+              accessor: "carParameters.carDrive"
             },
             {
               Header: "VIN",
-              accessor: "vinNumber"
+              accessor: "carParameters.vinNumber"
             },
             {
-              Header: "Запчасть",
-              accessor: "autoParts.name"
+              Header: "Трансмиссия",
+              columns: [
+                {
+                  Header: "Механика",
+                  id: "carParameters.transmission.mechanics",
+                  accessor: d => d.carParameters.transmission.mechanics ? "Да" : "Нет"
+                },
+                {
+                  Header: "Автомат",
+                  id: "carParameters.transmission.automatic",
+                  accessor: d => d.carParameters.transmission.automatic ? "Да" : "Нет"
+                }
+              ]
             },
             {
-              Header: "Состояние",
-              accessor: "..."
+              Header: "Топливо",
+              columns: [
+                {
+                  Header: "Бензин",
+                  id: "carParameters.fuel.gasoline",
+                  accessor: d => d.carParameters.fuel.gasoline ? "Да" : "Нет"
+
+                },
+                {
+                  Header: "Дизель",
+                  id: "carParameters.fuel.diesel",
+                  accessor: d => d.carParameters.fuel.diesel ? "Да" : "Нет"
+                },
+                {
+                  Header: "Электро",
+                  id: "carParameters.fuel.electro",
+                  accessor: d => d.carParameters.fuel.electro ? "Да" : "Нет"
+                },
+                {
+                  Header: "Гибрид",
+                  id: "carParameters.fuel.gybrid",
+                  accessor: d => d.carParameters.fuel.gybrid ? "Да" : "Нет"
+                }
+              ]
+            },
+            {
+              Header: "Заказ",
+              columns: [
+                {
+                  Header: "Запчасть",
+                  accessor: "autoParts.name"
+                },
+                {
+                  Header: "Новая",
+                  id: "autoParts.new",
+                  accessor: d => d.autoParts.new ? "Да" : "Нет"
+                },
+                {
+                  Header: "Б/У",
+                  id: "autoParts.used",
+                  accessor: d => d.autoParts.used ? "Да" : "Нет"
+                },
+                {
+                  Header: "Оригинал",
+                  id: "autoParts.original",
+                  accessor: d => d.autoParts.original ? "Да" : "Нет"
+                },
+                {
+                  Header: "Не оригинал",
+                  id: "autoParts.notOriginal",
+                  accessor: d => d.autoParts.notOriginal ? "Да" : "Нет"
+                }
+              ]
             }
           ]}
-          defaultPageSize={10}
+          defaultPageSize={13}
           className="-striped -highlight"
         />
       </div>
     );
   }
 }
-
-// const OrderList = ({ orders, onClickDetail, onClickDelete }) => {
-//   let ordersView = (
-//     <p>Sorry, there are no orders to show. You can try to add one.</p>
-//   );
-//   if (orders.length > 0) {
-//     ordersView = orders.map(order => (
-//       <Order
-//         key={order.id}
-//         id={order.id}
-//         name={order.name}
-//         onClickDetail={onClickDetail}
-//         onClickDelete={onClickDelete}
-//       />
-//     ));
-//   }
-//   return <div>{ordersView}</div>;
-// };
 
 OrderList.propTypes = {
   orders: PropTypes.arrayOf(
