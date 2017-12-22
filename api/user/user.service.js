@@ -13,6 +13,12 @@ class UserService {
       .catch(err => cb('Unable to find user.'));
   }
 
+  findOneByName(name, cb) {
+    User.findOne({ name: name })
+    .catch(err => cb('Unable to find user.'))
+    .then(user => cb(null, user));
+  }
+
   create(data, cb) {
     let user = new User(data);
     user.save();
