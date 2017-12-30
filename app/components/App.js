@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
 import Header from './common/Header';
 //import Footer from './common/Footer';
 
@@ -11,16 +9,14 @@ import Header from './common/Header';
 class App extends React.Component {
   render(){
     return (
-      <MuiThemeProvider>    
-      {/* <div> */}
-        <Header/>
+      <div>
+        <Header />
         <div className="">
           {this.props.children}
         </div>
         {/* <hr /> */}
         {/* <Footer/> */}
-      {/* </div> */}
-      </ MuiThemeProvider>
+      </div>
     );
   }
 }

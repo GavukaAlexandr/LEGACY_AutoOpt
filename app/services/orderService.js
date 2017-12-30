@@ -2,6 +2,12 @@ import fetch from 'isomorphic-fetch';
 import * as endpoints from './apiEndpoints';
 
 class OrderService {
+  constructor() {
+    this.headers = {
+      //TODO: add headers
+    }
+  }
+
   static loadOrders() {
     const request = new Request(`${endpoints.BASE_URL}${endpoints.GET_ORDERS}`, {
       method: 'GET'

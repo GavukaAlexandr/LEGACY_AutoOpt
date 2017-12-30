@@ -1,7 +1,11 @@
+// AUTH ACTION TYPES
+// ALERT_MODAL ACTION TYPES
 export const SHOW_ALERT_SUCCESS = 'SHOW_ALERT_SUCCESS';
 export const HIDE_ALERT_SUCCESS = 'HIDE_ALERT_SUCCESS';
 export const SHOW_MODAL_SUCCESS = 'SHOW_MODAL_SUCCESS';
 export const HIDE_MODAL_SUCCESS = 'HIDE_MODAL_SUCCESS';
+
+// USER ACTION TYPES
 export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS';
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
 export const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS';
@@ -9,6 +13,8 @@ export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
 export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
 export const SAVING_USER = 'SAVING_USER';
 export const REQUEST_USER_ID = 'REQUEST_USER_ID';
+
+// ORDER ACTION TYPES
 export const LOAD_ORDER_SUCCESS = 'LOAD_ORDER_SUCCESS';
 export const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
 export const CREATE_ORDER_SUCCESS = 'CREATE_ORDER_SUCCESS';
@@ -16,3 +22,11 @@ export const UPDATE_ORDER_SUCCESS = 'UPDATE_ORDER_SUCCESS';
 export const DELETE_ORDER_SUCCESS = 'DELETE_ORDER_SUCCESS';
 export const SAVING_ORDER = 'SAVING_ORDER';
 export const REQUEST_ORDER_ID = 'REQUEST_ORDER_ID';
+
+// AUTH ACTION TYPES
+export const AUTH_USER = 'auth_user';  
+export const UNAUTH_USER = 'unauth_user';
+export const AUTH_ERROR = 'auth_error';
+export const FORGOT_PASSWORD_REQUEST = 'forgot_password_request';
+export const RESET_PASSWORD_REQUEST = 'reset_password_request';
+export const PROTECTED_TEST = 'protected_test';

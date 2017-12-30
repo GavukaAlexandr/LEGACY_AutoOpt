@@ -14,10 +14,12 @@ import UserAddPage from "./components/users/UserAddPage";
 import UserEditPage from "./components/users/UserEditPage";
 import AboutPage from "./components/about/AboutPage";
 import NotFound from "./components/not_found/NotFound";
+import LoginPage from "./components/auth/loginPage";
 export default (
     <Route path="/app" component={App}>
       <Redirect from="/" to="/app"/>
       <IndexRoute component={HomePage}/>
+      <Route path="/app/login" component={LoginPage}/>
       <Route path="/app/orders" component={OrderPage}/>
       <Route path="/app/orders/add" component={OrderAddPage}/>
       <Route path="/app/orders/:id/edit" component={OrderEditPage}/>

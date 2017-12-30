@@ -1,4 +1,49 @@
 body {
-	// background-color: lightblue;
-	// height: 100vw
+  // Title
+  .MuiTypography-title-71 {
+    font-size: 2rem;
+  }
+
+  .loginForm {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+
+    .login-form-paper {
+      width: 70rem;
+      padding: 2rem 10rem 5rem 10rem;
+      align-self: center;
+      display: flex;
+      flex-direction: column;
+      //   align-content: center;
+
+      h1 {
+        padding-bottom: 3rem;
+        align-self: center;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        flex-wrap: wrap;
+        justify-content: center;
+        size: 20rem;
+
+        label {
+          font-size: 2.5rem;
+        }
+        input {
+          font-size: 2.5rem;
+          // margin-top: 3rem;
+        }
+
+        .login-form-button {
+          margin-top: 7rem;
+        }
+      }
+    }
+  }
 }
