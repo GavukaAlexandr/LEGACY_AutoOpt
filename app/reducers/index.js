@@ -1,5 +1,5 @@
-import authReducer from './authReducer';
 import { reducer as formReducer } from 'redux-form';  
+import authReducer from './authReducer';
 import {
     orders,
     order,
@@ -27,6 +27,6 @@ const rootReducer = combineReducers({
     savingOrder,
     orderToDelete,
     authReducer,
-    formReducer,
+    form: formReducer,
 });
 export default rootReducer;

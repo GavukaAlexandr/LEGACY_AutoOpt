@@ -37,6 +37,7 @@ export function errorHandler(dispatch, error, type) {
 }
 
 export function loginUser({ email, password }) {
+    console.log(`loginUser >>>>>>> email: ${email} password: ${password}`);
   return function(dispatch) {
     axios
       .post(`${API_BASE_URL}/login`, { email, password })
