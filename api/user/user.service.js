@@ -19,6 +19,12 @@ class UserService {
     .then(user => cb(null, user));
   }
 
+  findOneByEmail(email, cb) {
+    User.findOne({ email: email })
+    .catch(err => cb('Unable to find user.'))
+    .then(user => cb(null, user));
+  }
+
   create(data, cb) {
     let user = new User(data);
     user.save();

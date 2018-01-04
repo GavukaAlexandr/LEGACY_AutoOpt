@@ -1,14 +1,15 @@
 import axios from "axios";
 import { browserHistory } from "react-router";
-import cookie from "react-cookie";
 import {
   AUTH_USER,
   AUTH_ERROR,
   UNAUTH_USER,
   PROTECTED_TEST
 } from "./actionTypes";
-import API_BASE_URL from "./../../jest.config";
-
+import jwtDecode from "jwt-decode";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+const API_BASE_URL = "http://localhost:3000/api";
 const CLIENT_ROOT_URL = "http://localhost:3000/app";
 
 export function errorHandler(dispatch, error, type) {
@@ -37,17 +38,22 @@ export function errorHandler(dispatch, error, type) {
 }
 
 export function loginUser({ email, password }) {
-    console.log(`loginUser >>>>>>> email: ${email} password: ${password}`);
   return function(dispatch) {
     axios
-      .post(`${API_BASE_URL}/login`, { email, password })
+      .post(`${API_BASE_URL}/login/`, { email, password })
       .then(response => {
-        cookie.save("token", response.data.token, { path: "/" });
-        dispatch({ type: AUTH_USER });
-        window.location.href = CLIENT_ROOT_URL + "/orders";
+        // console.log(response);
+
+        cookies.set("token", response.data.token, { path: "/" });
+
+        let decodedToken = jwtDecode(response.data.token);
+        let user = decodedToken.user;
+
+        dispatch({ type: AUTH_USER, user });
+        window.location.href = CLIENT_ROOT_URL + "/orders/";
       })
       .catch(error => {
-        errorHandler(dispatch, error.response, AUTH_ERROR);
+        // errorHandler(dispatch, error.response, AUTH_ERROR);
       });
   };
 }
@@ -55,7 +61,7 @@ export function loginUser({ email, password }) {
 export function logoutUser() {
   return function(dispatch) {
     dispatch({ type: UNAUTH_USER });
-    cookie.remove("token", { path: "/" });
+    cookies.remove("token", { path: "/" });
 
     window.location.href = CLIENT_ROOT_URL + "/login";
   };
@@ -77,17 +83,18 @@ export function logoutUser() {
 
 export function protectedTest() {
   return function(dispatch) {
-    axios.get(`${API_BASE_URL}/testsecret`, {
-      headers: { 'Authorization': cookie.load('token') }
-    })
-    .then(response => {
-      dispatch({
-        type: PROTECTED_TEST,
-        payload: response.data.content
+    axios
+      .get(`${API_BASE_URL}/testsecret`, {
+        headers: { Authorization: cookie.load("token") }
+      })
+      .then(response => {
+        dispatch({
+          type: PROTECTED_TEST,
+          payload: response.data.content
+        });
+      })
+      .catch(error => {
+        errorHandler(dispatch, error.response, AUTH_ERROR);
       });
-    })
-    .catch((error) => {
-      errorHandler(dispatch, error.response, AUTH_ERROR)
-    });
-  }
+  };
 }

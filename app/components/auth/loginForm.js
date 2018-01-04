@@ -40,6 +40,7 @@ class LoginForm extends Component {
   }
 
   renderTextField(props) {
+    console.log(props)
     return (
       <TextField
         // hintText={props.label}
@@ -47,6 +48,11 @@ class LoginForm extends Component {
         // floatingLabelText={props.label}
         // errorText={props.touched && props.error}
         {...props}
+        {...props.input}
+        // value={props.input.value}
+        value={props.value}
+        type={props.type} 
+    
       />
     );
   }
@@ -68,7 +74,8 @@ class LoginForm extends Component {
       <div className={"loginForm"}>
         <Paper className={"login-form-paper"} elevation={24} square={false}>
           <h1>Войти в систему</h1>
-          <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} noValidate autoComplete="off">
+          <form onSubmit=
+          {handleSubmit(this.handleFormSubmit.bind(this))} noValidate autoComplete="off">
           {this.renderAlert()}
             <Field
               component={this.renderTextField}

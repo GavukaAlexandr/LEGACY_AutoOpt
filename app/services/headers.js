@@ -1,5 +1,10 @@
-import cookie from 'react-cookie';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+const token = cookies.get('token');
 
-export let headers = {
-    'Authorization': cookie.load('token'),  
+const headers = {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`,  
 };
+
+export default headers;

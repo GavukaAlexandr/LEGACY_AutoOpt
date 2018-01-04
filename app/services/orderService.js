@@ -1,16 +1,11 @@
 import fetch from 'isomorphic-fetch';
 import * as endpoints from './apiEndpoints';
-
+import headers from './headers';
 class OrderService {
-  constructor() {
-    this.headers = {
-      //TODO: add headers
-    }
-  }
-
   static loadOrders() {
     const request = new Request(`${endpoints.BASE_URL}${endpoints.GET_ORDERS}`, {
-      method: 'GET'
+      method: 'GET',
+      headers: headers,
     });
 
     return fetch(request).then(response => response.json());
@@ -18,7 +13,8 @@ class OrderService {
 
   static getOrder(id) {
     const request = new Request(`${endpoints.BASE_URL}${endpoints.GET_ORDER}/${id}`, {
-      method: 'GET'
+      method: 'GET',
+      headers: headers,
     });
 
     return fetch(request).then(response => response.json());
@@ -27,9 +23,7 @@ class OrderService {
   static createOrder(order) {
     const request = new Request(`${endpoints.BASE_URL}${endpoints.POST_ORDER}`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: headers,
       body: JSON.stringify({
         order: order
       })
@@ -41,9 +35,7 @@ class OrderService {
   static updateOrder(order) {
     const request = new Request(`${endpoints.BASE_URL}${endpoints.PUT_ORDER}/${order.id}`, {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: headers,
       body: JSON.stringify({
         order: order
       })
@@ -55,9 +47,7 @@ class OrderService {
   static deleteOrder(id) {
     const request = new Request(`${endpoints.BASE_URL}${endpoints.DELETE_ORDER}/${id}`, {
       method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      headers: headers,
     });
 
     return fetch(request);

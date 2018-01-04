@@ -14,11 +14,11 @@ class JwtController {
       secretOrKey: SECRET_KEY
     };
 
-    if (req.body.name && req.body.password) {
+    if (req.body.email && req.body.password) {
       let password = req.body.password;
 
       new Promise((resolve, reject) => {
-        UserService.findOneByName(req.body.name, (err, user) => {
+        UserService.findOneByEmail(req.body.email, (err, user) => {
           if (!user) {
             reject();
           } else {
@@ -29,7 +29,14 @@ class JwtController {
         .then(user => {
           if (user.password === password) {
             //FIXME:  implement Scrypt for password before verify
-            const payload = { id: user.id }; //TODO: possibly add ACL roles in payload
+            const payload = {
+              user: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                createdAt: user.createdAt,
+              }
+            }; //TODO: possibly add ACL roles in payload
             const token = jwt.sign(payload, SECRET_KEY);
 
             return res.json({ message: "ok", token: token });
@@ -46,8 +53,8 @@ class JwtController {
     return res.json({ message: "ok" });
   }
   unauthenticatedRequestsHandler(err, req, res, next) {
-    if (err.name === 'UnauthorizedError') {
-      res.status(401).redirect('/app/login/');
+    if (err.name === "UnauthorizedError") {
+      res.status(401).redirect("/app/login/");
     }
     // next();
   }

@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import { bindActionCreators } from 'redux';
-import autoBind from '../../lib/autoBind';
-import * as userActions from '../../actions/userActions';
-import * as modalActions from '../../actions/modalActions';
-import * as alertActions from '../../actions/alertActions';
-import UserList from './UserList';
-import Modal from '../common/Modal';
-import ConfirmModal from '../common/ConfirmModal';
-import { alertMessage } from '../../helpers';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Link } from "react-router";
+import { bindActionCreators } from "redux";
+import autoBind from "../../lib/autoBind";
+import * as userActions from "../../actions/userActions";
+import * as modalActions from "../../actions/modalActions";
+import * as alertActions from "../../actions/alertActions";
+import UserList from "./UserList";
+import Modal from "../common/Modal";
+import ConfirmModal from "../common/ConfirmModal";
+import { alertMessage } from "../../helpers";
 
 export class UsersPage extends Component {
   constructor(props, context) {
     super(props, context);
 
     autoBind(this, {
-      bindOnly: ['onClickDetail', 'onClickDelete', 'handleDelete']
+      bindOnly: ["onClickDetail", "onClickDelete", "handleDelete"]
     });
 
     props.actions.loadUsers();
@@ -49,7 +49,8 @@ export class UsersPage extends Component {
         <UserList
           users={this.props.users}
           onClickDetail={this.onClickDetail}
-          onClickDelete={this.onClickDelete} />
+          onClickDelete={this.onClickDelete}
+        />
         <Modal
           id="userDetailsModal"
           title="User Info"
@@ -92,7 +93,10 @@ function mapStatesToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({...userActions, ...modalActions, ...alertActions}, dispatch)
+    actions: bindActionCreators(
+      { ...userActions, ...modalActions, ...alertActions },
+      dispatch
+    )
   };
 }
 

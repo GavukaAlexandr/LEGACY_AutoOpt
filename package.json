@@ -117,6 +117,7 @@
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.1.1",
     "jsonwebtoken": "^8.1.0",
+    "jwt-decode": "^2.2.0",
     "lodash.foreach": "^4.5.0",
     "lodash.includes": "^4.3.0",
     "lodash.isfunction": "^3.0.8",
@@ -133,7 +134,6 @@
     "react": "16.0.0",
     "react-big-calendar": "0.16.1",
     "react-bootstrap": "0.31.5",
-    "react-cookie": "^2.1.2",
     "react-dom": "16.0.0",
     "react-redux": "5.0.6",
     "react-router": "3.2.0",
@@ -144,6 +144,7 @@
     "redux-form": "^7.2.0",
     "redux-logger": "3.0.6",
     "redux-thunk": "2.2.0",
-    "toastr": "^2.1.2"
+    "toastr": "^2.1.2",
+    "universal-cookie": "^2.1.2"
   }
 }

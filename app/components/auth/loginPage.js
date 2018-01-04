@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import { bindActionCreators } from "redux";
 import autoBind from "../../lib/autoBind";
 // import * as loginActions from '../../actions/authActions';
-import { loginUser } from "../../actions/authActions";
+import * as authActions from "../../actions/authActions";
 import { debug } from "util";
 class LoginPage extends React.Component {
   constructor(props) {
@@ -20,13 +20,12 @@ class LoginPage extends React.Component {
       submitted: false
     };
 
-    // autoBind(this, {
-      // bindOnly: ['handleChange', 'handleSubmit',]
-    // });
+    autoBind(this, {
+    bindOnly: ['handleChange', 'handleSubmit',]
+    });
 
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -41,8 +40,8 @@ class LoginPage extends React.Component {
     this.setState({ submitted: true });
     const { email, password } = this.state;
     if (email && password) {
-          console.log(email + ' ' + password);
-      loginUser(email, password);
+      console.log(email + " " + password);
+      this.props.actions.loginUser({ email, password });
     }
   }
 
@@ -54,9 +53,7 @@ class LoginPage extends React.Component {
         <h2>Login</h2>
         <form name="form" onSubmit={this.handleSubmit}>
           <div
-            className={
-              "form-group" + (submitted && !email ? " has-error" : "")
-            }
+            className={"form-group" + (submitted && !email ? " has-error" : "")}
           >
             <label htmlFor="email">email</label>
             <input
@@ -67,9 +64,7 @@ class LoginPage extends React.Component {
               onChange={this.handleChange}
             />
             {submitted &&
-              !email && (
-                <div className="help-block">email is required</div>
-              )}
+              !email && <div className="help-block">email is required</div>}
           </div>
           <div
             className={
@@ -106,5 +101,10 @@ function mapStateToProps(state) {
   };
 }
 
-const connectedLoginPage = connect(mapStateToProps)(LoginPage);
-export default connect(mapStateToProps)(LoginPage);
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: bindActionCreators({ ...authActions }, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
