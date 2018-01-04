@@ -8,7 +8,6 @@ import { orders } from "../../reducers/orderReducer";
 
 class OrderList extends React.Component {
   constructor(props, context) {
-    console.log("asdasdas")
     super(props, context);
     this.state = {};
     // const { orders, onClickDetail, onClickDelete } = this.props;

@@ -22,7 +22,6 @@ export default function(state = INITIAL_STATE, action) {
         message: "",
         authenticated: true
       });
-    // return { ...state, error: "", message: "", authenticated: true };
     case UNAUTH_USER:
       return { ...state, authenticated: false };
     case AUTH_ERROR:

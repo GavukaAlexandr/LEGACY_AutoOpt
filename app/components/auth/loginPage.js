@@ -7,6 +7,7 @@ import autoBind from "../../lib/autoBind";
 // import * as loginActions from '../../actions/authActions';
 import * as authActions from "../../actions/authActions";
 import { debug } from "util";
+
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
@@ -23,9 +24,6 @@ class LoginPage extends React.Component {
     autoBind(this, {
     bindOnly: ['handleChange', 'handleSubmit',]
     });
-
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -40,7 +38,6 @@ class LoginPage extends React.Component {
     this.setState({ submitted: true });
     const { email, password } = this.state;
     if (email && password) {
-      console.log(email + " " + password);
       this.props.actions.loginUser({ email, password });
     }
   }

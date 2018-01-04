@@ -12,7 +12,7 @@ const cookies = new Cookies();
 class App extends React.Component {
   static onEnter(nextState, replace) {
     let token = cookies.get("token");
-    //TODO: get auth status from redux store, and check valid for jwt before login
+    //FIXME: get auth status from redux store, and check valid for jwt before login
     const pathname = nextState.location.pathname;
 
     if (pathname == "/app/login/") {

@@ -1,3 +1,4 @@
+import { push } from 'react-router-redux';
 import axios from "axios";
 import { browserHistory } from "react-router";
 import {
@@ -50,7 +51,7 @@ export function loginUser({ email, password }) {
         let user = decodedToken.user;
 
         dispatch({ type: AUTH_USER, user });
-        window.location.href = CLIENT_ROOT_URL + "/orders/";
+        dispatch(push('/app/orders'));
       })
       .catch(error => {
         // errorHandler(dispatch, error.response, AUTH_ERROR);
