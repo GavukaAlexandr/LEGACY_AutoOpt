@@ -70,14 +70,14 @@ export class OrderPage extends Component {
   }
 }
 
-OrderPage.propTypes = {
-  actions: PropTypes.object,
-  alert: PropTypes.object,
-  modal: PropTypes.object,
-  orderToDelete: PropTypes.string,
-  orders: PropTypes.array.isRequired,
-  order: PropTypes.object.isRequired
-};
+// OrderPage.propTypes = {
+//   actions: PropTypes.object,
+//   alert: PropTypes.object,
+//   modal: PropTypes.object,
+//   orderToDelete: PropTypes.string,
+//   orders: PropTypes.array.isRequired,
+//   order: PropTypes.object.isRequired
+// };
 
 function mapStatesToProps(state, ownProps) {
   return {

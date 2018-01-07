@@ -1,54 +1,72 @@
-import fetch from 'isomorphic-fetch';
-import * as endpoints from './apiEndpoints';
-import headers from './headers';
+import fetch from "isomorphic-fetch";
+import * as endpoints from "./apiEndpoints";
+import HEADERS from "./headers";
+
 class OrderService {
   static loadOrders() {
-    const request = new Request(`${endpoints.BASE_URL}${endpoints.GET_ORDERS}`, {
-      method: 'GET',
-      headers: headers,
-    });
+    const options = {
+      method: "GET",
+      headers: HEADERS(),
+    };
+
+    const request = new Request(
+      `${endpoints.BASE_URL}${endpoints.GET_ORDERS}`,
+      options
+    );
 
     return fetch(request).then(response => response.json());
   }
 
   static getOrder(id) {
-    const request = new Request(`${endpoints.BASE_URL}${endpoints.GET_ORDER}/${id}`, {
-      method: 'GET',
-      headers: headers,
-    });
+    const request = new Request(
+      `${endpoints.BASE_URL}${endpoints.GET_ORDER}/${id}`,
+      {
+        method: "GET",
+        headers: HEADERS(),
+      }
+    );
 
     return fetch(request).then(response => response.json());
   }
 
   static createOrder(order) {
-    const request = new Request(`${endpoints.BASE_URL}${endpoints.POST_ORDER}`, {
-      method: 'POST',
-      headers: headers,
-      body: JSON.stringify({
-        order: order
-      })
-    });
+    const request = new Request(
+      `${endpoints.BASE_URL}${endpoints.POST_ORDER}`,
+      {
+        method: "POST",
+        headers: HEADERS(),
+        body: JSON.stringify({
+          order: order
+        })
+      }
+    );
 
     return fetch(request).then(response => response.json());
   }
 
   static updateOrder(order) {
-    const request = new Request(`${endpoints.BASE_URL}${endpoints.PUT_ORDER}/${order.id}`, {
-      method: 'PUT',
-      headers: headers,
-      body: JSON.stringify({
-        order: order
-      })
-    });
+    const request = new Request(
+      `${endpoints.BASE_URL}${endpoints.PUT_ORDER}/${order.id}`,
+      {
+        method: "PUT",
+        headers: HEADERS(),
+        body: JSON.stringify({
+          order: order
+        })
+      }
+    );
 
     return fetch(request).then(response => response.json());
   }
 
   static deleteOrder(id) {
-    const request = new Request(`${endpoints.BASE_URL}${endpoints.DELETE_ORDER}/${id}`, {
-      method: 'DELETE',
-      headers: headers,
-    });
+    const request = new Request(
+      `${endpoints.BASE_URL}${endpoints.DELETE_ORDER}/${id}`,
+      {
+        method: "DELETE",
+        headers: HEADERS(),
+      }
+    );
 
     return fetch(request);
   }

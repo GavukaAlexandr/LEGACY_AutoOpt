@@ -1,18 +1,11 @@
-// import { ExtractJwt, Strategy, fromAuthHeader } from "passport-jwt";
 import jwt from "jsonwebtoken";
 import passport from "passport";
 import SECRET_KEY from "./secretkey";
-// import JwtService from "./jwt.service";
 import UserService from "../../user/user.service";
 
 class JwtController {
-  // constructor() {
-  // }
   login(req, res, next) {
-    let jwtOptions = {
-      // jwtFromRequest: fromAuthHeader,
-      secretOrKey: SECRET_KEY
-    };
+    let jwtOptions = { secretOrKey: SECRET_KEY };
 
     if (req.body.email && req.body.password) {
       let password = req.body.password;
@@ -27,16 +20,17 @@ class JwtController {
         });
       })
         .then(user => {
+          //FIXME:  implement Scrypt for password before verify
           if (user.password === password) {
-            //FIXME:  implement Scrypt for password before verify
             const payload = {
               user: {
                 id: user.id,
                 name: user.name,
                 email: user.email,
-                createdAt: user.createdAt,
+                createdAt: user.createdAt
               }
-            }; //TODO: possibly add ACL roles in payload
+            }; 
+
             const token = jwt.sign(payload, SECRET_KEY);
 
             return res.json({ message: "ok", token: token });
@@ -56,7 +50,6 @@ class JwtController {
     if (err.name === "UnauthorizedError") {
       res.status(401).redirect("/app/login/");
     }
-    // next();
   }
 }
 

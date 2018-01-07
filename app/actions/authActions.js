@@ -37,21 +37,20 @@ export function errorHandler(dispatch, error, type) {
     });
   }
 }
+    //FIXME: create middleware for global set headers
 
 export function loginUser({ email, password }) {
   return function(dispatch) {
     axios
       .post(`${API_BASE_URL}/login/`, { email, password })
       .then(response => {
-        // console.log(response);
-
         cookies.set("token", response.data.token, { path: "/" });
-
-        let decodedToken = jwtDecode(response.data.token);
+        let decodedToken = jwtDecode(cookies.get("token"));
         let user = decodedToken.user;
-
         dispatch({ type: AUTH_USER, user });
-        dispatch(push('/app/orders'));
+      })
+      .then(() => {
+        dispatch(push("/app/orders/"));
       })
       .catch(error => {
         // errorHandler(dispatch, error.response, AUTH_ERROR);
@@ -63,8 +62,7 @@ export function logoutUser() {
   return function(dispatch) {
     dispatch({ type: UNAUTH_USER });
     cookies.remove("token", { path: "/" });
-
-    window.location.href = CLIENT_ROOT_URL + "/login";
+    dispatch(push("/app/login/"));
   };
 }
 
@@ -81,21 +79,3 @@ export function logoutUser() {
 //     });
 //   }
 // }
-
-export function protectedTest() {
-  return function(dispatch) {
-    axios
-      .get(`${API_BASE_URL}/testsecret`, {
-        headers: { Authorization: cookie.load("token") }
-      })
-      .then(response => {
-        dispatch({
-          type: PROTECTED_TEST,
-          payload: response.data.content
-        });
-      })
-      .catch(error => {
-        errorHandler(dispatch, error.response, AUTH_ERROR);
-      });
-  };
-}

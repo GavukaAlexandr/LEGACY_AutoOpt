@@ -1,19 +1,30 @@
 import React, { Component } from "react";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
-import { Link } from "react-router";
 import { bindActionCreators } from "redux";
 import autoBind from "../../lib/autoBind";
-// import * as loginActions from '../../actions/authActions';
 import * as authActions from "../../actions/authActions";
-import { debug } from "util";
+
+import { withStyles } from "material-ui/styles";
+import TextField from "material-ui/TextField";
+import Paper from "material-ui/Paper";
+import Button from "material-ui/Button";
+
+const styles = theme => ({
+  container: {
+    display: "flex",
+    flexWrap: "wrap"
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit
+  },
+  menu: {}
+});
 
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
-
-    // reset login status
-    // this.props.dispatch(userActions.logout());
 
     this.state = {
       email: "",
@@ -22,14 +33,13 @@ class LoginPage extends React.Component {
     };
 
     autoBind(this, {
-    bindOnly: ['handleChange', 'handleSubmit',]
+      bindOnly: ["handleChange", "handleSubmit"]
     });
   }
 
   handleChange(e) {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-    console.log(this.state);
   }
 
   handleSubmit(e) {
@@ -45,51 +55,57 @@ class LoginPage extends React.Component {
   render() {
     const { authenticated } = this.props;
     const { email, password, submitted } = this.state;
+    const { classes } = this.props;
+
     return (
-      <div className="col-md-6 col-md-offset-3">
-        <h2>Login</h2>
-        <form name="form" onSubmit={this.handleSubmit}>
-          <div
-            className={"form-group" + (submitted && !email ? " has-error" : "")}
-          >
-            <label htmlFor="email">email</label>
-            <input
+      <div className={"loginForm"}>
+        <Paper className={"login-form-paper"} elevation={24} square={false}>
+          <form name="form" onSubmit={this.handleSubmit}>
+            <TextField
+              id="email"
+              label="Email"
+              placeholder="Email"
+              className={classes.textField}
+              margin="normal"
               type="email"
-              className="form-control"
               name="email"
               value={email}
               onChange={this.handleChange}
             />
             {submitted &&
-              !email && <div className="help-block">email is required</div>}
-          </div>
-          <div
-            className={
-              "form-group" + (submitted && !password ? " has-error" : "")
-            }
-          >
-            <label htmlFor="password">Password</label>
-            <input
+              !email && <div className="help-block">Введите email</div>}
+            <TextField
+              id="password"
+              label="Password"
+              placeholder="Password"
+              className={classes.textField}
+              margin="normal"
               type="password"
-              className="form-control"
               name="password"
               value={password}
               onChange={this.handleChange}
             />
             {submitted &&
-              !password && (
-                <div className="help-block">Password is required</div>
-              )}
-          </div>
-          <div className="form-group">
-            <button className="btn btn-primary">Login</button>
-            {authenticated}
-          </div>
-        </form>
+              !password && <div className="help-block">Введите пароль</div>}
+            <Button
+              type="submit"
+              className={"login-form-button"}
+              raised
+              color="primary"
+            >
+              <h3>Войти</h3>
+            </Button>
+          </form>
+        </Paper>
       </div>
     );
   }
 }
+
+LoginPage.propTypes = {
+  email: PropTypes.string,
+  password: PropTypes.string
+};
 
 function mapStateToProps(state) {
   const { authenticated } = state;
@@ -104,4 +120,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withStyles(styles)(LoginPage)
+);

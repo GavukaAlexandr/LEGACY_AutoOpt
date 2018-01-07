@@ -2,7 +2,10 @@ import mongoose from 'mongoose';
 import { Stream } from 'stream';
 
 const orderSchema = mongoose.Schema({
-  dateTime: Date,         // Дата запроса
+  createdAt: {             // Дата запроса
+    type: Date,
+    default: Date.now
+  },         
   user: {
     name: String,         // Имя клиента
     email: String,        // Почта
@@ -18,7 +21,7 @@ const orderSchema = mongoose.Schema({
     transportType: String,  // Тип транспорта
     brand: String,          // Марка
     model: String,          // Модель
-    releaseYear: Date,      // Год выпуска  
+    releaseYear: String,    // Год выпуска  
     engineCapacity: Number, // Объем двигателя
     bodyType: String,       // Тип кузова
     carDrive: String,       // Привод

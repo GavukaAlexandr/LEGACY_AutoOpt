@@ -1,49 +1,70 @@
-body {
-  // Title
-  .MuiTypography-title-71 {
-    font-size: 2rem;
-  }
+html {
+  // min-height: 100%; /* make sure it is at least as tall as the viewport */
+  // position: relative;
+  body {
+    height: stretch;
 
-  .loginForm {
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-
-    .login-form-paper {
-      width: 70rem;
-      padding: 2rem 10rem 5rem 10rem;
-      align-self: center;
+    .MenuAppBar-root-1 {
+      min-width: 100%;
+      position: fixed;
+      // Title
+      .MuiTypography-title-71 {
+        font-size: 2rem;
+      }
+    }
+    .loginForm {
+      height: 90vh;
       display: flex;
       flex-direction: column;
-      //   align-content: center;
+      align-content: center;
+      justify-content: center;
 
-      h1 {
-        padding-bottom: 3rem;
+      .login-form-paper {
+        width: 50rem;
+        padding: 3rem 5rem 5rem 5rem;
         align-self: center;
-      }
-
-      form {
         display: flex;
         flex-direction: column;
-        align-content: center;
-        flex-wrap: wrap;
-        justify-content: center;
-        size: 20rem;
+        //   align-content: center;
 
-        label {
-          font-size: 2.5rem;
-        }
-        input {
-          font-size: 2.5rem;
-          // margin-top: 3rem;
-        }
+        form {
+          display: flex;
+          flex-direction: column;
+          align-content: center;
+          flex-wrap: wrap;
+          justify-content: center;
+          size: 10rem;
 
-        .login-form-button {
-          margin-top: 7rem;
+          label {
+            font-size: 2.3rem;
+          }
+          input {
+            font-size: 2.5rem;
+          }
+
+          .login-form-button {
+            margin-top: 3rem;
+          }
         }
       }
+    }
+
+    .MuiIconButton-label-46 {
+      font-size: 2.5rem;
+    }
+    .user-info-menu-item {
+      font-size: 1.5rem;
+    }
+
+    .ReactTable {
+      position: absolute;
+      top: 64px;
+      bottom: 46px;
+    }
+    .pagination-bottom {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
     }
   }
 }

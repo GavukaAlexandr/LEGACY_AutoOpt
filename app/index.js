@@ -14,7 +14,7 @@ import "../node_modules/toastr/build/toastr.min.css";
 import "../node_modules/griddle-react-bootstrap/dist/griddle-react-bootstrap.css";
 import "./assets/styles/styles.scss";
 
-const store = configureStore();
+export const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
 render(
