@@ -25,6 +25,8 @@ class OrderController {
 
       res.status(200).json(createdOrder);
     });
+
+    next();
   }
 
   update(req, res, next) {

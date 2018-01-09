@@ -42,7 +42,7 @@ export function errorHandler(dispatch, error, type) {
 export function loginUser({ email, password }) {
   return function(dispatch) {
     axios
-      .post(`${API_BASE_URL}/login/`, { email, password })
+      .post(`${API_BASE_URL}/login`, { email, password })
       .then(response => {
         cookies.set("token", response.data.token, { path: "/" });
         let decodedToken = jwtDecode(cookies.get("token"));
