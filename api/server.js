@@ -31,6 +31,8 @@ mongodbConnection.once('open', () => {
 
   app.listen(apiConfig.api.port, (err) => {
     if (err) return console.log(err);
-    open(`${apiConfig.api.host}:${apiConfig.api.port}`);
+    console.log('host ' + apiConfig.api.host);
+    console.log('port ' + apiConfig.api.port);
+    // open(`${apiConfig.api.host}:${apiConfig.api.port}`);
   });
 });

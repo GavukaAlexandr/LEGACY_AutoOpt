@@ -10,8 +10,10 @@ import {
 import jwtDecode from "jwt-decode";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
-const API_BASE_URL = "http://localhost:3000/api";
-const CLIENT_ROOT_URL = "http://localhost:3000/app";
+// FIXME: set dynamic host in API_BASE_URL
+const HOST = `http://${window.location.host}`;
+const API_BASE_URL = `${HOST}/api`;
+// const CLIENT_ROOT_URL = `${HOST}/app`;
 
 export function errorHandler(dispatch, error, type) {
   let errorMessage = "";
