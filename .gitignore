@@ -4,6 +4,8 @@ dist
 
 ./api/security/jwt/secret.js
 
+server.zip
+
 # Ignore config files
 /config/*
 /ux/*
