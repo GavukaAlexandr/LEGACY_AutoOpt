@@ -11,6 +11,8 @@ services:
       # - "8080:8080"
     depends_on:
       - mongo
+    # автоперезагрузка сервиса если возникнет ошибка
+    restart: always
   mongo:
     command: mongod
     image: mongo:3-jessie
@@ -23,7 +25,8 @@ services:
     # https://docs.docker.com/engine/reference/builder/#volume
     # https://docs.docker.com/engine/admin/volumes/volumes/
     # з ліва параметри для хосту, з права для контейнера
-    
     volumes:
       - ./../database/mongo/db:/data/db
       - ./../database/mongo/configDb:/data/configdb
+    # автоперезагрузка сервиса если возникнет ошибка
+    restart: always
