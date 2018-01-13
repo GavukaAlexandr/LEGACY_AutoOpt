@@ -11,7 +11,7 @@ VOLUME [ "/home/www/avtoopt" ]
 # RUN apt-get update
 # RUN apt-get install -y sudo
 # RUN usermod -a -G sudo www
-RUN mkdir -p /home/www/avtoopt
+# RUN mkdir -p /home/www/avtoopt
 WORKDIR /home/www/avtoopt
 # RUN chown -R www:www /home/www/avtoopt
 # RUN chmod -R 777 /home/www/avtoopt
