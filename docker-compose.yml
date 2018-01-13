@@ -11,7 +11,7 @@ services:
       # - "8080:8080"
     depends_on:
       - mongo
-    # автоперезагрузка сервиса если возникнет ошибка
+    # автоперезагрузка сервиса если возникнет ошибка і автозагрузка із системою
     restart: always
   mongo:
     command: mongod
@@ -28,5 +28,5 @@ services:
     volumes:
       - ./../database/mongo/db:/data/db
       - ./../database/mongo/configDb:/data/configdb
-    # автоперезагрузка сервиса если возникнет ошибка
+    # автоперезагрузка сервиса если возникнет ошибка і автозагрузка із системою
     restart: always
