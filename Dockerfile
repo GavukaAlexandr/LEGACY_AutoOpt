@@ -16,7 +16,7 @@ RUN npm install pm2@latest -g
 WORKDIR /home/www/avtoopt
 COPY . /home/www/avtoopt
 RUN chown -R www:www /home/www/avtoopt
-RUN chmod -R 777 /home/www/avtoopt
+# RUN chmod -R 777 /home/www/avtoopt
 USER www
 RUN npm install
 RUN export NODE_ENV=production

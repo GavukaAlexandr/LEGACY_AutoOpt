@@ -16,8 +16,8 @@ services:
   mongo:
     command: mongod
     image: mongo:3-jessie
-    # ports:
-      # - "27100:27017" # map port to none standard port, to avoid conflicts with locally installed mongodb.
+    ports:
+      - "27100:27017" # map port to none standard port, to avoid conflicts with locally installed mongodb.
 
     # Прив'язка VOLUME із MongoImage за допомогою
     # docker-compose volumes до файлової системи хосту.
