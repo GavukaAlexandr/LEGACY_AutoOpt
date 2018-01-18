@@ -4,9 +4,9 @@ import { routerReducer, routerMiddleware } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import thunk from 'redux-thunk';
-import { createLogger } from 'redux-logger';
+// import { createLogger } from 'redux-logger';
 
-const logger = createLogger();
+// const logger = createLogger();
 
 // In order to use the devtools (https://github.com/gaearon/redux-devtools)
 // we prepare it to enhance the store.
@@ -23,7 +23,7 @@ export default function configureStore(initialState) {
       applyMiddleware(
         thunk,
         reduxImmutableStateInvariant(),
-        logger,
+        // logger,
         middlewareWithHistory
       ),
       devtools

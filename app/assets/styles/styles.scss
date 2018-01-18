@@ -4,12 +4,15 @@ html {
   body {
     height: stretch;
 
-    .MenuAppBar-root-1 {
+    .app-bar {
       min-width: 100%;
       position: fixed;
       // Title
-      .MuiTypography-title-71 {
+      .header-title {
         font-size: 2rem;
+      }
+      .header-user-icon {
+        font-size: 2.5rem;
       }
     }
     .loginForm {

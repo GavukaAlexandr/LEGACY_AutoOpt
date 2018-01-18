@@ -49,19 +49,27 @@ class MenuAppBar extends React.Component {
   }
 
   logOut() {
-    this.handleClose()
+    this.handleClose();
     this.props.actions.logoutUser();
   }
 
   render() {
     const { authenticated } = this.props;
+
     const { classes } = this.props;
+    const headClasses = {
+      ...classes,
+      appBarClass: "app-bar",
+      icon: "header-user-icon",
+      flex: `${classes.flex}  header-title`
+    };
+
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
     return (
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar position="static" className={headClasses.appBarClass}>
           <Toolbar>
             <IconButton
               className={classes.menuButton}
@@ -70,8 +78,8 @@ class MenuAppBar extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography type="title" color="inherit" className={classes.flex}>
-              АВТОритет
+            <Typography type="title" color="inherit" className={headClasses.flex}>
+              Avto opt orders
             </Typography>
             {this.props.authenticated && (
               <div>
@@ -80,6 +88,7 @@ class MenuAppBar extends React.Component {
                   aria-haspopup="true"
                   onClick={this.handleMenu}
                   color="contrast"
+                  className={headClasses.icon}
                 >
                   <AccountCircle />
                 </IconButton>
@@ -97,9 +106,18 @@ class MenuAppBar extends React.Component {
                   open={open}
                   onClose={this.handleClose}
                 >
-                  <MenuItem className="user-info-menu-item">{this.props.user.name}</MenuItem>
-                  <MenuItem className="user-info-menu-item">{this.props.user.email}</MenuItem>
-                  <MenuItem className="user-info-menu-item" onClick={this.logOut}>Выйти</MenuItem>
+                  <MenuItem className="user-info-menu-item">
+                    {this.props.user.name}
+                  </MenuItem>
+                  <MenuItem className="user-info-menu-item">
+                    {this.props.user.email}
+                  </MenuItem>
+                  <MenuItem
+                    className="user-info-menu-item"
+                    onClick={this.logOut}
+                  >
+                    Выйти
+                  </MenuItem>
                 </Menu>
               </div>
             )}
@@ -130,4 +148,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(MenuAppBar));
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withStyles(styles)(MenuAppBar)
+);

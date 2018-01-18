@@ -35,6 +35,11 @@
   },
   "scripts": {
     "start": "npm-run-all --parallel open:src lint:watch test:watch",
+
+    "build:server": "node_modules/.bin/babel -d ./server ./api",
+    "build:client": "node_modules/.bin/webpack -p --config webpack.prod.config.babel.js --progress",
+    "build": "npm run build:server && npm run build:client",
+
     "open:src": "babel-watch api/server.js --source-maps ----inspect",
     "lint": "node_modules/.bin/esw webpack.config.* app tools",
     "ux:init": "npm-run-all ux:copy ux:install",
