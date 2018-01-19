@@ -5,30 +5,30 @@ const orderSchema = mongoose.Schema({
   createdAt: {             // Дата запроса
     type: Date,
     default: Date.now
-  },         
+  },
   user: {
     name: String,         // Имя клиента
     email: String,        // Почта
-    phone: Number,        // Телефон
+    phone: String,        // Телефон
   },
   getResponse: {           // Ответ по заказу
-    viber: Boolean,       
+    viber: Boolean,
     call: Boolean,
     email: Boolean,
     whatsapp: Boolean,
-  },         
+  },
   carParameters: {
     transportType: String,  // Тип транспорта
     brand: String,          // Марка
     model: String,          // Модель
-    releaseYear: String,    // Год выпуска  
+    releaseYear: String,    // Год выпуска
     engineCapacity: Number, // Объем двигателя
     bodyType: String,       // Тип кузова
     carDrive: String,       // Привод
-    vinNumber: String,      // VIN-номер  
+    vinNumber: String,      // VIN-номер
     transmission: {         // ТРАНСМИССИЯ
       mechanics: Boolean,   // Механика
-      automatic: Boolean,   // Автомат 
+      automatic: Boolean,   // Автомат
     },
     fuel: {                 // ТОПЛИВО
       gasoline: Boolean,    // Бензин
