@@ -13,5 +13,11 @@
     "host": "http://localhost",
     "port": 3000,
     "baseUrl": "/api"
+  },
+  "security": {
+    "secretkey": "*****secretkey*****"
+  },
+  "devTools": {
+    "dev": true
   }
 }
