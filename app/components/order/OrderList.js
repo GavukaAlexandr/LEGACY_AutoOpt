@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+import moment from "moment";
+// import Button from 'material-ui/Button';
+import OrderState from "./OrderState";
+
+
 
 class OrderList extends React.Component {
   constructor(props, context) {
@@ -18,6 +23,22 @@ class OrderList extends React.Component {
               Header: "Заказ",
               columns: [
                 {
+                  Header: "Дата запроса",
+                  id: "createdAt",
+                  accessor: d =>
+                    moment(d.createdAt).format(" DD-MM-YYYY HH:mm:ss"),
+                  width: 141
+                },
+                {
+                  Header: "Статус",
+                  id: "status",
+                  Cell: row => (
+                    <div style={{ width: "100%", height: "100%" }}>
+                      <OrderState props={row} />
+                    </div>
+                  )
+                },
+                {
                   Header: "Запчасть",
                   accessor: "autoParts.name"
                 },
@@ -25,25 +46,25 @@ class OrderList extends React.Component {
                   Header: "Новая",
                   id: "autoParts.new",
                   accessor: d => (d.autoParts.new ? "Да" : "Нет"),
-                  width: 60,
+                  width: 60
                 },
                 {
                   Header: "Б/У",
                   id: "autoParts.used",
                   accessor: d => (d.autoParts.used ? "Да" : "Нет"),
-                  width: 40,
+                  width: 40
                 },
                 {
                   Header: "Оригинал",
                   id: "autoParts.original",
                   accessor: d => (d.autoParts.original ? "Да" : "Нет"),
-                  width: 60,
+                  width: 60
                 },
                 {
                   Header: "Не оригинал",
                   id: "autoParts.notOriginal",
                   accessor: d => (d.autoParts.notOriginal ? "Да" : "Нет"),
-                  width: 100,
+                  width: 100
                 }
               ]
             },
@@ -53,17 +74,17 @@ class OrderList extends React.Component {
                 {
                   Header: "Имя",
                   accessor: "user.name",
-                  width: 100,
+                  width: 100
                 },
                 {
                   Header: "Email",
                   accessor: "user.email",
-                  width: 150,
+                  width: 150
                 },
                 {
                   Header: "Телефон",
                   accessor: "user.phone",
-                  width: 100,
+                  width: 100
                 }
               ]
             },
@@ -74,30 +95,30 @@ class OrderList extends React.Component {
                   Header: "Viber",
                   id: "getResponse.viber",
                   accessor: d => (d.getResponse.viber ? "Да" : "Нет"),
-                  width: 45,
+                  width: 45
                 },
                 {
                   Header: "Звонок",
                   id: "getResponse.call",
                   accessor: d => (d.getResponse.call ? "Да" : "Нет"),
-                  width: 60,
+                  width: 60
                 },
                 {
                   Header: "email",
                   id: "getResponse.email",
                   accessor: d => (d.getResponse.email ? "Да" : "Нет"),
-                  width: 45,
+                  width: 45
                 },
                 {
                   Header: "whatsapp",
                   id: "whatsapp",
                   accessor: d => (d.getResponse.whatsapp ? "Да" : "Нет"),
-                  width: 75,
+                  width: 75
                 }
               ]
             },
             {
-              Header: " ",
+              Header: "Данные авто",
               columns: [
                 {
                   Header: "Тип",
@@ -141,14 +162,14 @@ class OrderList extends React.Component {
                   id: "carParameters.transmission.mechanics",
                   accessor: d =>
                     d.carParameters.transmission.mechanics ? "Да" : "Нет",
-                  width: 75,
+                  width: 75
                 },
                 {
                   Header: "Автомат",
                   id: "carParameters.transmission.automatic",
                   accessor: d =>
                     d.carParameters.transmission.automatic ? "Да" : "Нет",
-                  width: 70,
+                  width: 70
                 }
               ]
             },
@@ -159,30 +180,29 @@ class OrderList extends React.Component {
                   Header: "Бензин",
                   id: "carParameters.fuel.gasoline",
                   accessor: d => (d.carParameters.fuel.gasoline ? "Да" : "Нет"),
-                  width: 58,
+                  width: 58
                 },
                 {
                   Header: "Дизель",
                   id: "carParameters.fuel.diesel",
                   accessor: d => (d.carParameters.fuel.diesel ? "Да" : "Нет"),
-                  width: 60,
+                  width: 60
                 },
                 {
                   Header: "Электро",
                   id: "carParameters.fuel.electro",
                   accessor: d => (d.carParameters.fuel.electro ? "Да" : "Нет"),
-                  width: 65,
+                  width: 65
                 },
                 {
                   Header: "Гибрид",
                   id: "carParameters.fuel.gybrid",
                   accessor: d => (d.carParameters.fuel.gybrid ? "Да" : "Нет"),
-                  width: 60,
+                  width: 60
                 }
               ]
-            },
-          ]
-        }
+            }
+          ]}
           defaultPageSize={10}
           className="-striped -highlight"
         />

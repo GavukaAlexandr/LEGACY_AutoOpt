@@ -21,11 +21,14 @@ export const orders = (state = initialState, action) => {
     case types.UPDATE_ORDER_SUCCESS:
       return Object.assign({}, state, {
         orders: [
-          ...state.orders.filter(order => order.id !== action.order.id),
-          Object.assign({}, action.order)
-        ].sort((a, b) => {
-          return a.id - b.id; // Sort by id alphabetically.
-        })
+          ...state.orders.map(order => {
+            if (order.id === action.order.id) {
+              return {...order, orderState: action.order.orderState};
+            } else {
+              return order;
+            }
+            }),
+        ]
       });
 
     case types.DELETE_ORDER_SUCCESS:

@@ -2,16 +2,20 @@ import mongoose from 'mongoose';
 import { Stream } from 'stream';
 
 const orderSchema = mongoose.Schema({
-  createdAt: {             // Дата запроса
+  createdAt: {            // Дата запроса
     type: Date,
     default: Date.now
   },
-  user: {
-    name: String,         // Имя клиента
-    email: String,        // Почта
-    phone: String,        // Телефон
+  orderState: {               //статус заказа
+    type: String,
+    default: "new",
   },
-  getResponse: {           // Ответ по заказу
+  user: {
+    name: String,           // Имя клиента
+    email: String,          // Почта
+    phone: String,          // Телефон
+  },
+  getResponse: {            // Ответ по заказу
     viber: Boolean,
     call: Boolean,
     email: Boolean,
@@ -37,12 +41,12 @@ const orderSchema = mongoose.Schema({
       gybrid: Boolean,      // Гибрид
     },
   },
-  autoParts: {            // Запчасть
-    name: String,         // Наименование запчасти
-    new: Boolean,         // Новая
-    used: Boolean,         // Б/У
-    original: Boolean,    // Оригинал
-    notOriginal: Boolean, // Не оригинал
+  autoParts: {              // Запчасть
+    name: String,           // Наименование запчасти
+    new: Boolean,           // Новая
+    used: Boolean,          // Б/У
+    original: Boolean,      // Оригинал
+    notOriginal: Boolean,   // Не оригинал
   },
 });
 

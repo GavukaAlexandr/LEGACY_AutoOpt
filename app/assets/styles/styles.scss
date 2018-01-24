@@ -73,3 +73,26 @@ html {
     }
   }
 }
+
+// styles for select list state
+.select-state{
+  button {
+    font-size: 1rem;
+  }
+
+  .new{
+
+  }
+  .handling{
+  background-color: rgb(88, 88, 255);
+  }
+  .inProcess{
+  background-color: rgb(255, 255, 35);
+  }
+  .sales{
+  background-color: rgb(0, 173, 0);
+  }
+  .bad{
+  background-color: rgb(233, 56, 56);
+  }
+}

@@ -1,3 +1,43 @@
+Connection to MongoDB on server in Docker container
+
+1) get IP for mongoDB container
+```
+ssh avtoopt
+docker ps
+docker inspect <mongo container id>
+```
+
+2) connection config for Compass
+```
+HostName: < IPAddress from docker inspect >
+
+Port: 27017
+
+Authentication: none
+
+SSL: off
+
+SSH Tunel: Use identity file
+
+SSH HostName: 185.25.116.112
+
+SSH Tunel Port: 22
+
+SSH Username: avtoopt
+
+SSH Identity File: avtoopt_rsa
+
+Passphrase: ---
+
+Favorite Name: ---
+```
+
+PM2
+```
+pm2 list - show process
+pm2 logs - logged info
+pm2 describe 0 -detail info for process 0
+
 # mern-seed
   
 The start point to rock with ReactJS and NodeJS.
