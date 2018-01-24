@@ -10,7 +10,6 @@ import {
 import jwtDecode from "jwt-decode";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
-// FIXME: set dynamic host in API_BASE_URL
 const HOST = `http://${window.location.host}`;
 const API_BASE_URL = `${HOST}/api`;
 // const CLIENT_ROOT_URL = `${HOST}/app`;

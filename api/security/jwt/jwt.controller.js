@@ -1,12 +1,10 @@
 import jwt from "jsonwebtoken";
 import passport from "passport";
-import SECRET_KEY from "./secretkey";
 import UserService from "../../user/user.service";
+import config from 'config';
 
 class JwtController {
   login(req, res, next) {
-    let jwtOptions = { secretOrKey: SECRET_KEY };
-
     if (req.body.email && req.body.password) {
       let password = req.body.password;
 
@@ -29,9 +27,9 @@ class JwtController {
                 email: user.email,
                 createdAt: user.createdAt
               }
-            }; 
+            };
 
-            const token = jwt.sign(payload, SECRET_KEY);
+            const token = jwt.sign(payload, config.security.secretkey);
 
             return res.json({ message: "ok", token: token });
           } else {
