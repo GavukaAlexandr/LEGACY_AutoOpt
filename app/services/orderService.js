@@ -2,9 +2,6 @@ import fetch from "isomorphic-fetch";
 import * as endpoints from "./apiEndpoints";
 import HEADERS from "./headers";
 
-const HOST = `http://${window.location.host}`;
-const API_BASE_URL = `${HOST}/api`;
-
 class OrderService {
   static loadOrders() {
     const options = {
@@ -13,7 +10,7 @@ class OrderService {
     };
 
     const request = new Request(
-      `${API_BASE_URL}${endpoints.GET_ORDERS}`,
+      `${endpoints.BASE_URL}${endpoints.GET_ORDERS}`,
       options
     );
 
